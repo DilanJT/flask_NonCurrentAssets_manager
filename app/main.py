@@ -40,14 +40,14 @@ def readAssetsList():
     noncurrentassets = NonCurrentAsset.query.all()
     return render_template("assetlist.html", noncurrentassets=noncurrentassets)
 
-@app.route('assets/<int:id>')
+@app.route('/assets/<int:id>')
 def readAsset(id):
     asset = NonCurrentAsset.query.filter_by(id = id).first()
     if asset:
         return render_template('asset.html', asset = asset)
     return f"Cannot find the asset with id={id}"
 
-@app.route('assets/<int:id>/update', methods= ['GET', 'POST'])
+@app.route('/assets/<int:id>/update', methods= ['GET', 'POST'])
 def updateAsset(id):
     asset = NonCurrentAsset.query.filter_by(id = id).first()
     if request.method == 'POST':
@@ -67,7 +67,7 @@ def updateAsset(id):
         return f"Cannot find the asset with id={id}"
     return render_template("update.html", asset = asset)
 
-@app.route('assets/<int:id>/delete', methods=['GET', 'POST'])
+@app.route('/assets/<int:id>/delete', methods=['GET', 'POST'])
 def deleteAsset(id):
     asset = NonCurrentAsset.query.filter_by(id=id).first()
     if request.method == "POST":

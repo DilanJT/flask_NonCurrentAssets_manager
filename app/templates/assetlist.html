@@ -4,23 +4,110 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Assets</title>
+    <style>
+        /* body */
+        body{
+            margin: 0;
+        }
+
+        /* table */
+        .assets-table{
+            margin: 5px;
+            border-collapse: collapse;
+            width: 100%;
+            color: #000000;
+        }
+
+        .assets-table td, .clubs-table th {
+            border: 1px solid #000000;
+        }
+
+        .assets-table tr:nth-child(even){
+            background-color: #e2e2e2a9;
+        }
+
+        .assets-table tr:hover {
+            background-color: #a3a9cc;
+        }
+
+        .assets-table th {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            text-align: center;
+            color: white;
+            background-color: #000000;
+        }
+
+        .assets-table td {
+            padding: 5px;
+        }
+
+        /* body */
+        .content_section{
+            padding: 20px;
+            width: 80%;
+            background-color: #a3a9cc7a;
+            border-radius: 20px;
+            display: block;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .nav-item{
+            display: block;
+            padding: 5px;
+            border-radius: 5px;
+            color: white;
+            background-color: #000000;
+            float: right;
+            margin: 10px 2px 10px 2px;
+        }
+
+        .nav-item a{
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-item:hover {
+            background-color: #292929;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/assets/add">Add Assets</a></li>
-                <li><a href="/assets">Show Assets</a></li>
-                <li><a href="/assets/delete">Delete Assets</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="content_secontion">
-        {% for noncurrentasset in noncurrentassets %}
-        <a href="/assets/noncurrentasset.id"><h3>{{noncurrentasset}}</h3></a><hr>
-        {% endfor %}
+    
+    <div class="content_section">
+        <h1>Non Current Assets</h1>
         <!-- still have some changes to be done -->
+
+        <div class="nav-section">
+            <div class="nav-item"><a href="/assets/add">Add Assets</a></div>
+            <!-- <div class="nav-item"><a href="/assests/add">Add Assets</a></div>
+            <div class="nav-item"><a href="/assests/add">Add Assets</a></div> -->
+        </div>
+
+        <table class="assets-table">
+            <tr>
+                <th>Name</th>
+                <th>Asset Type</th>
+                <th>Initial Price</th>
+                <th>Annural Depreciation</th>
+                <th>Years Used</th>
+                <th>Total Depreciation</th>
+                <th>Net Amount</th>
+            </tr>
+            {% for noncurrentasset in noncurrentassets %}
+            <tr align="center">
+                <td><a href="/assets/noncurrentasset.id">{{noncurrentasset.name}}</a></td>
+                <td>{{noncurrentasset.assetType}}</td>
+                <td>{{noncurrentasset.assetValue}}</td>
+                <td>{{noncurrentasset.annualDepreciation}}</td>
+                <td>{{noncurrentasset.yearsUsed}}</td>
+                <td>{{noncurrentasset.totalDepreciation}}</td>
+                <td>{{noncurrentasset.netAmount}}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </body>
 </html>
