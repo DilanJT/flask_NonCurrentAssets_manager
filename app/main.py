@@ -63,9 +63,9 @@ def updateAsset(id):
             asset = NonCurrentAsset(name=name, assetType=assetType, assetValue=int(assetValue), annualDepreciation=int(annualDepreciation), yearsUsed=int(yearsUsed))
             datab.session.add(asset)
             datab.session.commit()
-            return redirect(f'/data/{id}')
+            return redirect(f'/assets')
         return f"Cannot find the asset with id={id}"
-    return render_template("update.html", asset = asset)
+    return render_template("updateasset.html", asset = asset)
 
 @app.route('/assets/<int:id>/delete', methods=['GET', 'POST'])
 def deleteAsset(id):

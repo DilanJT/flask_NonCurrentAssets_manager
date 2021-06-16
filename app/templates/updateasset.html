@@ -5,15 +5,112 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        /* body */
+        body{
+            margin: 0;
+        }
+        .content_section{
+            padding: 20px;
+            width: 35%;
+            background-color: #a3a9cc7a;
+            border-radius: 20px;
+            display: block;
+            margin: 25px auto;
+            text-align: center;
+        }
+
+        .form-table{
+            margin: 5px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .form-table tr:nth-child(even){
+            background-color: #e2e2e2a9;
+        }
+
+
+        .form-table td{
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .form-table .submit{
+            text-align: right;
+        }
+
+        .inputbox{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        .submitbtn{
+            padding: 8px 10px;
+            margin: 4px 0;
+            box-sizing: border-box;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .nav-item{
+            display: block;
+            float: right;
+            width: 100px;
+            padding: 5px;
+            border-radius: 5px;
+            color: white;
+            background-color: #000000;
+            margin: 10px 2px 10px 2px;
+        }
+
+        .nav-item a{
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-item:hover {
+            background-color: #292929;
+        }
+    </style>
 </head>
 <body>
-    <form action='' method = "POST">
-        <p>Asset Name <input type = "text" name="name" value = "asset.name" /></p>
-        <p>Asset Type <input type = "text" name="assetType" value = "asset.assetType" /></p>
-        <p>Asset Value <input type = "integer" name="assetValue"  value = "asset.assetValue" /></p>
-        <p>Annual Depreciation <input type = "integer" name="annualDepreciation" value = "asset.annualDepreciation" /></p>
-        <p>Years Used <input type = "integer" name="yearsUsed" value = "asset.yearsUsed" /></p>
-        <p><input type = "submit" value = "Submit" /></p>
-    </form>
+    <div class="content_section">
+        <h1>Update Asset</h1>
+        <h3>*Note: Land asset types dosent have depreciation</h3>
+        <div class="nav-item"><a href="/assets">Show all assets</a></div>
+        <form action='' method = "POST">
+
+            <table class="form-table">
+                <tr>
+                    <td>Asset Name</td>
+                    <td><input class="inputbox" type = "text" name = "name" value = "{{asset.name}}" /></td>
+                </tr>
+                <tr>
+                    <td>Asset Type</td>
+                    <td><input class="inputbox" type = "text" name = "assetType" value = "{{asset.assetType}}" /></td>
+                </tr>
+                <tr>
+                    <td>Asset Value</td>
+                    <td><input class="inputbox" type = "integer" name = "assetValue" value = "{{asset.assetValue}}" /></td>
+                </tr>
+                <tr>
+                    <td>Annual Depreciation</td>
+                    <td><input class="inputbox" type = "integer" name = "annualDepreciation" value = "{{asset.annualDepreciation}}" /></td>
+                </tr>
+                <tr>
+                    <td>Years Used</td>
+                    <td><input class="inputbox" type = "integer" name = "yearsUsed" value = "{{asset.yearsUsed}}" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="submit"><input class="submitbtn" type = "submit" value = "Submit" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>
