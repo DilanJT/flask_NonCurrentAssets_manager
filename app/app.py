@@ -35,6 +35,7 @@ def create():
         datab.session.commit()
         return redirect('/assets')
 
+# read all the assets from the database
 @app.route("/assets")
 def readAssetsList():
     noncurrentassets = NonCurrentAsset.query.all()
@@ -47,6 +48,7 @@ def readAsset(id):
         return render_template('asset.html', asset = asset)
     return f"Cannot find the asset with id={id}"
 
+# update a specific asset
 @app.route('/assets/<int:id>/update', methods= ['GET', 'POST'])
 def updateAsset(id):
     asset = NonCurrentAsset.query.filter_by(id = id).first()
@@ -80,4 +82,4 @@ def deleteAsset(id):
     return redirect('/assets')
 
 
-app.run(host="localhost", port="5000")
+app.run(host="0.0.0.0", port="8080")
