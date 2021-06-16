@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assets</title>
+    <title>Document</title>
 </head>
 <body>
-    {% for asset in assets %}
-    <h3>{{asset}}</h3>
-    {% endfor %}
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/assets/add">Add Assets</a></li>
+                <li><a href="/assets">Show Assets</a></li>
+                <li><a href="/assets/delete">Delete Assets</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content_secontion">
+        {% for noncurrentasset in noncurrentassets %}
+        <a href="/assets/noncurrentasset.id"><h3>{{noncurrentasset}}</h3></a><hr>
+        {% endfor %}
+        <!-- still have some changes to be done -->
+    </div>
 </body>
 </html>

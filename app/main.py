@@ -1,15 +1,19 @@
 from flask import Flask, render_template, request, redirect
-from flask.signals import before_render_template
-from models import db, NonCurrentAsset
+from models import datab, NonCurrentAsset
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///assets.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+datab.init_app(app)
 
-@before_render_template
+@app.before_first_request
 def create_table():
-    db.create_all()
+    datab.create_all()
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 @app.route("/assets/add", methods=['GET', "POST"])
 def create():
@@ -19,7 +23,6 @@ def create():
     if request.method == "POST":
 
         # getting the values entered to the html form
-        id = request.form["id"]
         name = request.form["name"]
         assetType = request.form["assetType"]
         assetValue = request.form["assetValue"]
@@ -27,12 +30,15 @@ def create():
         yearsUsed = request.form["yearsUsed"]
 
         # adding to the database
-        asset = NonCurrentAsset(id=id, name=name, assetType=assetType, assetValue=assetValue, annualDepreciation=annualDepreciation, yearsUsed=yearsUsed)
-        db.session.add(asset)
+        asset = NonCurrentAsset(name=name, assetType=assetType, assetValue=int(assetValue), annualDepreciation=int(annualDepreciation), yearsUsed=int(yearsUsed))
+        datab.session.add(asset)
+        datab.session.commit()
         return redirect('/assets')
 
 @app.route("/assets")
 def readAssetsList():
-    asset = NonCurrentAsset.query.all()
-    return render_template("assetlist.html", asset=asset)
+    noncurrentassets = NonCurrentAsset.query.all()
+    return render_template("assetlist.html", noncurrentassets=noncurrentassets)
 
+
+app.run(host="localhost", port="5000")

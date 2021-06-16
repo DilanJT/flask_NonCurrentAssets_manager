@@ -1,21 +1,20 @@
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+datab = SQLAlchemy()
 
-class NonCurrentAsset(db.Model):
+class NonCurrentAsset(datab.Model):
     __tablename__ = "noncurrentassets"
 
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.toString(), nullable=False)
-    assetType = db.Column(db.toString())
-    assetValue = db.Column(db.Integer(), nullable=False)
-    annualDepreciation = db.Column(db.Integer(), nullable=False)
-    yearsUsed = db.Column(db.Integer(), nullable=False)
-    netAmount = db.Column(db.Integer())
-    totalDepreciation = db.Column(db.Integer())
+    id = datab.Column(datab.Integer, primary_key=True)
+    name = datab.Column(datab.String(), nullable=False)
+    assetType = datab.Column(datab.String())
+    assetValue = datab.Column(datab.Integer(), nullable=False)
+    annualDepreciation = datab.Column(datab.Integer(), nullable=False)
+    yearsUsed = datab.Column(datab.Integer(), nullable=False)
+    netAmount = datab.Column(datab.Integer())
+    totalDepreciation = datab.Column(datab.Integer())
 
-    def __init__(self, id, name, assetType, assetValue, annualDepreciation, yearsUsed):
-        self.id = id
+    def __init__(self, name, assetType, assetValue, annualDepreciation, yearsUsed):
         self.name = name
         self.assetType = assetType
         self.assetValue = assetValue
@@ -27,3 +26,5 @@ class NonCurrentAsset(db.Model):
 
     def __repr__(self):
         return f"{self.name}: AssetValue=Rs.{self.assetValue} | AnnualDepreciation=Rs.{self.annualDepreciation} | NetAmout=Rs.{self.netAmount}"
+
+
