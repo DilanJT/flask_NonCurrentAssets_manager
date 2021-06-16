@@ -13,7 +13,7 @@ def create_table():
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return redirect("/assets")
 
 @app.route("/assets/add", methods=['GET', "POST"])
 def create():
@@ -70,13 +70,14 @@ def updateAsset(id):
 @app.route('/assets/<int:id>/delete', methods=['GET', 'POST'])
 def deleteAsset(id):
     asset = NonCurrentAsset.query.filter_by(id=id).first()
-    if request.method == "POST":
+    if request.method == "GET":
         if asset:
             datab.session.delete(asset)
             datab.session.commit()
+            print("deleted")
             return redirect('/assets')
 
-    return render_template('delete.html')
+    return redirect('/assets')
 
 
 app.run(host="localhost", port="5000")

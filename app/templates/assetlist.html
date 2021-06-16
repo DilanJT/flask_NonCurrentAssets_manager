@@ -95,16 +95,21 @@
                 <th>Years Used</th>
                 <th>Total Depreciation</th>
                 <th>Net Amount</th>
+                <th>Actions</th>
             </tr>
             {% for noncurrentasset in noncurrentassets %}
             <tr align="center">
-                <td><a href="/assets/noncurrentasset.id">{{noncurrentasset.name}}</a></td>
+                <td>{{noncurrentasset.name}}</td>
                 <td>{{noncurrentasset.assetType}}</td>
                 <td>{{noncurrentasset.assetValue}}</td>
                 <td>{{noncurrentasset.annualDepreciation}}</td>
                 <td>{{noncurrentasset.yearsUsed}}</td>
                 <td>{{noncurrentasset.totalDepreciation}}</td>
                 <td>{{noncurrentasset.netAmount}}</td>
+                <td>
+                    <div class="nav-item"><a href="/assets/{{noncurrentasset.id}}/delete">Delete</a></div>
+                    <div class="nav-item"><a href="/assets/{{noncurrentasset.id}}/update">Update</a></div>
+                </td>
             </tr>
             {% endfor %}
         </table>
