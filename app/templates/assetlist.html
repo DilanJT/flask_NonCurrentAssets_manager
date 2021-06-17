@@ -80,6 +80,21 @@
         <h1>Non Current Assets</h1>
         <!-- still have some changes to be done -->
 
+        <div class="summary-section">
+            <div class="card-item">
+                <span>Total Assets : {{noncurrentassets|length}}</span>
+            </div>
+            {% set totalNetAmount = namespace(value=0) %}
+            {% for noncurrentasset in noncurrentassets %}
+            {% set totalNetAmount.value = totalNetAmount.value + noncurrentasset.netAmount %}
+            {% endfor %}
+
+            <div class="card-item">
+                <span>Total Net Worth : Rs.{{totalNetAmount.value}}</span>
+            </div>
+            
+        </div>
+
         <div class="nav-section">
             <div class="nav-item"><a href="/assets/add">Add Assets</a></div>
             <!-- <div class="nav-item"><a href="/assests/add">Add Assets</a></div>
@@ -101,11 +116,11 @@
             <tr align="center">
                 <td>{{noncurrentasset.name}}</td>
                 <td>{{noncurrentasset.assetType}}</td>
-                <td>{{noncurrentasset.assetValue}}</td>
-                <td>{{noncurrentasset.annualDepreciation}}</td>
+                <td>Rs.{{noncurrentasset.assetValue}}</td>
+                <td>Rs.{{noncurrentasset.annualDepreciation}}</td>
                 <td>{{noncurrentasset.yearsUsed}}</td>
-                <td>{{noncurrentasset.totalDepreciation}}</td>
-                <td>{{noncurrentasset.netAmount}}</td>
+                <td>Rs.{{noncurrentasset.totalDepreciation}}</td>
+                <td>Rs.{{noncurrentasset.netAmount}}</td>
                 <td>
                     <div class="nav-item"><a href="/assets/{{noncurrentasset.id}}/delete">Delete</a></div>
                     <div class="nav-item"><a href="/assets/{{noncurrentasset.id}}/update">Update</a></div>

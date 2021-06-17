@@ -41,13 +41,6 @@ def readAssetsList():
     noncurrentassets = NonCurrentAsset.query.all()
     return render_template("assetlist.html", noncurrentassets=noncurrentassets)
 
-@app.route('/assets/<int:id>')
-def readAsset(id):
-    asset = NonCurrentAsset.query.filter_by(id = id).first()
-    if asset:
-        return render_template('asset.html', asset = asset)
-    return f"Cannot find the asset with id={id}"
-
 # update a specific asset
 @app.route('/assets/<int:id>/update', methods= ['GET', 'POST'])
 def updateAsset(id):
